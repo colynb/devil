@@ -70,6 +70,11 @@ echo '  / / / / __/  | | / // // /  '
 echo ' / /_/ / /___  | |/ // // /___'
 echo '/_____/_____/  |___/___/_____/'
 echo ''
+echo 'Devil CLI is now installed!'
+echo ''
+echo 'Run these commands:'
+echo '  devil install'
+echo '  devil up'
 echo ''
 printf "${NORMAL}"
 env zsh
