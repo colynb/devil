@@ -55,8 +55,8 @@ if [ "install" = "$1" ]; then
   curl -L https://github.com/docker/machine/releases/download/v$DOCKER_MACHINE_VERSION/docker-machine_darwin-amd64 \
     > $DEVIL/bin/docker-machine
   chmod a+x $DEVIL/bin/docker-machine
-  docker-machine create --driver virtualbox dev
-  docker-machine env dev
+  docker-machine create --driver virtualbox devil
+  docker-machine env devil
 
   printf "\n"
   printf "${RED}Installing Docker Compose...${NORMAL}\n\n"
@@ -79,12 +79,12 @@ fi
 if [ "up" = "$1" ]; then
 
   # Make sure docker vm is running
-  docker-machine start dev
-  eval "$(docker-machine env dev)"
+  docker-machine start devil
+  eval "$(docker-machine env devil)"
 
   DOCKER_IP_ADDRESS=$(docker-machine ip $(docker-machine active))
 
-  docker-compose --file $DEVIL/docker-compose.yml --project-name dev up -d
+  docker-compose --file $DEVIL/docker-compose.yml --project-name devil up -d
 
   DOCKER_CONTAINERS=$(docker ps --format "{{.Names}}")
 

@@ -5,5 +5,5 @@ export DEVIL_PROJECTS_FOLDER="$HOME/Projects/devil"
 export COMPOSE_FILE="$DEVIL/docker-compose.yml"
 export PATH="$DEVIL/bin":$PATH
 if [ -x $DEVIL/bin/docker-machine ]; then
-  eval "$(docker-machine env dev)"
+  eval "$(docker-machine env devil)"
 fi
