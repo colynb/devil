@@ -98,7 +98,7 @@ fi
 #====================================
 if [ "new" = "$1" ]; then
   DOCKER_IP_ADDRESS=$(docker-machine ip $(docker-machine active))
-  printf "Creating... $DEVIL_PROJECTS_FOLDER/sites/$1/$2\n"
-  mkdir -p "$DEVIL_PROJECTS_FOLDER/sites/$1/$2"
-  printf "${RED}\nInclude this in your /etc/hosts: \n\t$DOCKER_IP_ADDRESS  $2.$1\n\n${NORMAL}"
+  printf "Creating... $DEVIL_PROJECTS_FOLDER/sites/$2/$3\n"
+  mkdir -p "$DEVIL_PROJECTS_FOLDER/sites/$2/$3"
+  printf "${RED}\nInclude this in your /etc/hosts: \n\t$DOCKER_IP_ADDRESS  $3.$2\n\n${NORMAL}"
 fi

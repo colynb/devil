@@ -60,10 +60,7 @@ if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
   printf "${YELLOW}Found ~/.zshrc.${NORMAL}\n";
   echo "\nexport DEVIL=$DEVIL" >> ~/.zshrc
   echo "\nsource $DEVIL/devil.sh" >> ~/.zshrc
-  source ~/.zshrc
 fi
-
-devil install
 
 printf "${GREEN}"
 echo ''
