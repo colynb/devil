@@ -8,6 +8,10 @@ DEVIL installs a docker based local environment that includes nginx, php, and my
  * Docker Machine
  * Docker Compose
 
+## What It DOES NOT Include
+
+ * VirtualBox. Docker Machine boots up a VM using VirtualBox, so be sure to install that first.
+
 ## Basic Installation
 
 DEVIL is installed by running a shell script via curl:
