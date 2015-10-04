@@ -1,0 +1,18 @@
+web:
+  image: nginx-php-base
+  ports:
+    - "80:80"
+  volumes:
+    - $DOCKER_PROJECTS_FOLDER/sites/:/var/www
+    - $DOCKER_DEV_FOLDER/config/nginx.conf:/etc/nginx/sites-available/default
+    - $DOCKER_DEV_FOLDER/config/php.ini:/etc/php5/fpm/conf.d/php.ini
+  links:
+    - db
+db:
+  image: mariadb:5.5
+  ports:
+    - "3306:3306"
+  volumes:
+    - $DOCKER_DEV_FOLDER/config/mariadb.conf:/etc/mysql/my.cnf
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
