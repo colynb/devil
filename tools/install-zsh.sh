@@ -63,7 +63,6 @@ if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
 fi
 
 $DEVIL/bin/devil install
-$DEVIL/bin/devil up
 
 printf "${GREEN}"
 echo ''

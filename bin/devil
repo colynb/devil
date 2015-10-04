@@ -68,12 +68,9 @@ if [ "install" = "$1" ]; then
   printf "\n"
   printf "${RED}Setting up project folders...${NORMAL}\n\n"
 
-  printf "$DOCKER_PROJECTS_FOLDER/sites\n"
-  mkdir -p "$DOCKER_PROJECTS_FOLDER/sites"
+  printf "$DEVIL_PROJECTS_FOLDER/sites\n"
+  mkdir -p "$DEVIL_PROJECTS_FOLDER/sites"
 
-  printf "\n"
-  printf "${RED}Dev Toolset Installed!${NORMAL}"
-  printf "\n"
 fi
 
 #====================================

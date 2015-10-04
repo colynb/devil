@@ -3,7 +3,7 @@ web:
   ports:
     - "80:80"
   volumes:
-    - $DOCKER_PROJECTS_FOLDER/sites/:/var/www
+    - $DEVIL_PROJECTS_FOLDER/sites/:/var/www
     - $DEVIL/config/nginx.conf:/etc/nginx/sites-available/default
     - $DEVIL/config/php.ini:/etc/php5/fpm/conf.d/php.ini
   links:
