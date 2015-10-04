@@ -63,6 +63,7 @@ if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
   source ~/.zshrc
 fi
 
+devil install
 
 printf "${GREEN}"
 echo ''
@@ -75,4 +76,3 @@ echo ''
 echo ''
 printf "${NORMAL}"
 env zsh
-devil install
