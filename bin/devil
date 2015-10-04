@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+
+clear
+
+tput=$(which tput)
+if [ -n "$tput" ]; then
+    ncolors=$($tput colors)
+fi
+if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
+  RED="$(tput setaf 1)"
+  GREEN="$(tput setaf 2)"
+  YELLOW="$(tput setaf 3)"
+  BLUE="$(tput setaf 4)"
+  BOLD="$(tput bold)"
+  NORMAL="$(tput sgr0)"
+else
+  RED=""
+  GREEN=""
+  YELLOW=""
+  BLUE=""
+  BOLD=""
+  NORMAL=""
+fi
+
+#====================================
+# Install Toolset
+#====================================
+
+if [ "install" = "$1" ]; then
+  printf "${GREEN}"
+  printf "========================================\n"
+  printf "=     Installing Required Toolset      =\n"
+  printf "========================================\n"
+  printf "\n"
+  printf "1. PHP Composer\n"
+  printf "2. Docker\n"
+  printf "3. Docker Machine\n"
+  printf "4. Docker Compose\n"
+  printf "5. Project Folder Setup\n"
+  printf "${NORMAL}"
+
+  printf "${YELLOW}Installing PHP Composer...${NORMAL}\n\n"
+
+  curl -sS https://getcomposer.org/installer | php
+  mv composer.phar $DEVIL/bin/composer
+
+  printf "\n"
+  printf "${YELLOW}Installing Docker Binary...${NORMAL}\n\n"
+  curl -L https://get.docker.com/builds/Darwin/x86_64/docker-latest > $DEVIL/bin/docker
+  chmod a+x $DEVIL/bin/docker
+
+  printf "\n"
+  printf "${YELLOW}Installing Docker Machine...${NORMAL}\n\n"
+
+  curl -L https://github.com/docker/machine/releases/download/v$DOCKER_MACHINE_VERSION/docker-machine_darwin-amd64 \
+    > $DEVIL/bin/docker-machine
+  chmod a+x $DEVIL/bin/docker-machine
+  docker-machine create --driver virtualbox dev
+  docker-machine env dev
+
+  printf "\n"
+  printf "${YELLOW}Installing Docker Compose...${NORMAL}\n\n"
+
+  curl -L https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-`uname -s`-`uname -m` \
+    > $DEVIL/bin/docker-compose
+  chmod a+x $DEVIL/bin/docker-compose
+
+  printf "\n"
+  printf "${YELLOW}Setting up project folders...${NORMAL}\n\n"
+
+  printf "$DOCKER_PROJECTS_FOLDER/sites\n"
+  mkdir -p "$DOCKER_PROJECTS_FOLDER/sites"
+
+  printf "\n"
+  printf "${GREEG}Dev Toolset Installed!${NORMAL}"
+  printf "\n"
+fi
+
+#====================================
+# Docker Compose
+#====================================
+if [ "up" = "$1" ]; then
+
+  # Make sure docker vm is running
+  docker-machine start dev
+  eval "$(docker-machine env dev)"
+
+  DOCKER_IP_ADDRESS=$(docker-machine ip $(docker-machine active))
+
+  docker-compose --file $DEVIL/docker-compose.yml --project-name dev up -d
+
+  DOCKER_CONTAINERS=$(docker ps --format "{{.Names}}")
+
+  printf "${RED}\n\nRunning containers: \n\n$DOCKER_CONTAINERS \n\nDon't forget to make sure your apps \
+host names are added to your hosts file:${NORMAL}\n\n"
+  printf "$DOCKER_IP_ADDRESS  [hostname]\n\n"
+fi

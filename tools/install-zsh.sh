@@ -55,10 +55,11 @@ env git clone --depth=1 https://github.com/colynb/devil.git $DEVIL || {
   exit 1
 }
 
-printf "${BLUE}Looking for an existing zsh config...${NORMAL}\n"
+printf "${BLUE}Looking for and updating an existing zsh config...${NORMAL}\n"
 if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
-  printf "${YELLOW}Found ~/.zshrc.${NORMAL} ${GREEN}Backing up to ~/.zshrc.pre-devil${NORMAL}\n";
-  # mv ~/.zshrc ~/.zshrc.pre-devil;
+  printf "${YELLOW}Found ~/.zshrc.${NORMAL}\n";
+  echo "\nexport DEVIL=$DEVIL" >> ~/.zshrc
+  echo "\nsource $DEVIL/devil.sh" >> ~/.zshrc
 fi
 
 printf "${GREEN}"
@@ -72,3 +73,5 @@ echo ''
 echo ''
 printf "${NORMAL}"
 env zsh
+
+devil install
