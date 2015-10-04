@@ -1,5 +1,5 @@
 web:
-  image: nginx-php-base
+  image: colyn/nginx-php-base
   ports:
     - "80:80"
   volumes:
