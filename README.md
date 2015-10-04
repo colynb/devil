@@ -15,3 +15,17 @@ DEVIL is installed by running a shell script via curl:
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/colynb/devil/master/tools/install-zsh.sh)"
 ```
+
+## Container Setup
+
+Once you've installed the DEVIL cli, you can use it to install all the docker dev tools:
+
+```
+> devil install
+```
+
+With those installed, you can start up your development containers:
+
+```
+> devil up
+```
