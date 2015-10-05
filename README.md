@@ -15,6 +15,7 @@ DEVIL installs a docker based local environment that includes nginx, php, and my
 ## Basic Installation
 
 DEVIL is installed by running a shell script via curl:
+(Note: at the moment, it requires that you are running ZSH as your shell environment)
 
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/colynb/devil/master/tools/install-zsh.sh)"
