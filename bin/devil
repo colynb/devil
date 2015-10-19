@@ -29,20 +29,28 @@ fi
 if [ "install" = "$1" ]; then
   printf "${GREEN}"
   printf "========================================\n"
-  printf "=     Installing Required Toolset      =\n"
+  printf "=     Installing the following...      =\n"
   printf "========================================\n"
   printf "\n"
-  printf "1. PHP Composer\n"
-  printf "2. Docker\n"
-  printf "3. Docker Machine\n"
-  printf "4. Docker Compose\n"
-  printf "5. Project Folder Setup\n"
+  printf "1. Homebrew / Cask\n"
+  printf "2. NodeJS\n"
+  printf "3. Virtualbox\n"
+  printf "4. Docker\n"
+  printf "5. Docker Machine\n"
+  printf "6. Docker Compose\n"
+  printf "7. Intialize project folders\n"
   printf "${NORMAL}"
 
-  printf "${RED}Installing PHP Composer...${NORMAL}\n\n"
+  printf "${RED}Installing Homebrew / Cask...${NORMAL}\n\n"
 
-  curl -sS https://getcomposer.org/installer | php
-  mv composer.phar $DEVIL/bin/composer
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  brew install caskroom/cask/brew-cask
+
+  printf "${RED}Installing NodeJS...${NORMAL}\n\n"
+  brew install node
+
+  printf "${RED}Installing Virtualbox...${NORMAL}\n\n"
+  brew cask install virtualbox
 
   printf "\n"
   printf "${RED}Installing Docker Binary...${NORMAL}\n\n"
